@@ -1,0 +1,25 @@
+<button type="button" name="button"><a href="{% url 'calls:index' %}">Clear Page</a></button>
+
+<form action="{% url 'calls:weather' %}" method="post">
+{% csrf_token %}
+<fieldset>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% for choice in types %}
+        <input type="radio" name="choice" id="choice" value="{{ choice }}">
+        <label for="choice">{{ choice }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Check Cities">
+</form>
+
+<span class="updates" style="justify-content: space-between; display: flex">
+   <form action="{% url 'calls:update' %}" method="post">
+   {% csrf_token %}
+   <input type="submit" value="Update Database">
+   </form>
+</span>
+{% if updating %}<p><strong>{{ updating }}</strong></p>{% endif %}
+
+{% block content %}
+<p> This is where the cities with the chosen weather appear </p>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "calls/base.html"%}
+{% block content %}
+   <h1>{{ chosen }}</h1>
+   {% for city, name, state in requested %}
+      <p>{{ name }}, {{ state }} Temperature {{ city.temperature }} degrees Fahrenheit and {{ city.wind }} mph Wind Speed </p>
+   {% endfor %}
+{% endblock %}
